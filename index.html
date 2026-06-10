@@ -74,6 +74,10 @@
   .card p{color:var(--muted);font-size:15px;margin:0;}
   .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
   .pill{font-size:12.5px;font-weight:600;color:var(--navy);background:#eef2ea;border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .card .meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);}
+  .card .est{font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--muted);}
+  .card .visit{font-size:13px;font-weight:600;color:var(--green-d);}
+  .card .visit:hover{color:var(--navy);}
 
   /* entity block */
   .entity{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
@@ -185,12 +189,12 @@
     <h2>Six companies. One source of truth.</h2>
     <p class="lead">From environmental economics to housing software, agriculture to forestry to natural-capital markets — each company applies shared data infrastructure to a critical sector.</p>
     <div class="grid cols-3" style="margin-top:36px">
-      <div class="card"><div class="tag">Consulting</div><h3>Green Analytics Consulting</h3><p>Natural asset management, ecosystem service valuation, climate-risk and environmental economics for governments across Canada.</p></div>
-      <div class="card"><div class="tag">Software</div><h3>Green Metrics Technology</h3><p>Data &amp; software for housing and buildings — BuildSense, BuildBlox, Birch, and BRICS.</p></div>
-      <div class="card"><div class="tag">Housing</div><h3>Open Housing Canada</h3><p>Canada's open housing data &amp; AI commons, accelerating delivery with the DASH platform.</p></div>
-      <div class="card"><div class="tag">AgTech</div><h3>Precision Livestock Diagnostics</h3><p>SmartBarn analytics and computer vision for healthier herds and better welfare outcomes.</p></div>
-      <div class="card"><div class="tag">Forestry</div><h3>Wolastoqey Forest Partnership</h3><p>An Indigenous-led forest economy — carbon, biodiversity, and sustainable timber.</p></div>
-      <div class="card"><div class="tag">Natural Capital</div><h3>Impact Natural Capital</h3><p>Carbon and biodiversity markets, ESG, and climate finance for working lands.</p></div>
+      <div class="card"><div class="tag">Consulting</div><h3>Green Analytics Consulting</h3><p>Natural asset management, ecosystem service valuation, climate-risk and environmental economics for governments across Canada — home of the Birch natural-asset platform.</p><div class="meta"><span class="est">Est. 2010</span><a class="visit" href="https://www.greenanalytics.ca" target="_blank" rel="noopener">Visit website ↗</a></div></div>
+      <div class="card"><div class="tag">Software</div><h3>Green Metrics Technology</h3><p>Data &amp; software for housing and buildings — BuildSense and BuildBlox.</p><div class="meta"><span class="est">Est. 2017</span><a class="visit" href="https://www.greenmetrics.ca" target="_blank" rel="noopener">Visit website ↗</a></div></div>
+      <div class="card"><div class="tag">Housing</div><h3>Open Housing Canada</h3><p>Canada's open housing data &amp; AI commons, accelerating delivery with the DASH platform.</p><div class="meta"><span class="est">Est. 2025</span><a class="visit" href="https://openhousingcanada.ca" target="_blank" rel="noopener">Visit website ↗</a></div></div>
+      <div class="card"><div class="tag">AgTech</div><h3>Precision Livestock Diagnostics</h3><p>SmartBarn analytics and computer vision for healthier herds and better welfare outcomes.</p><div class="meta"><span class="est">Est. 2022</span><a class="visit" href="https://www.precisionlivestockdiagnostics.com" target="_blank" rel="noopener">Visit website ↗</a></div></div>
+      <div class="card"><div class="tag">Forestry</div><h3>Wolastoqey Forest Partnership</h3><p>An Indigenous-led forest economy — carbon, biodiversity, and sustainable timber.</p><div class="meta"><span class="est">Est. 2026</span><span class="visit" style="color:var(--muted)">Website coming soon</span></div></div>
+      <div class="card"><div class="tag">Natural Capital</div><h3>Impact Natural Capital</h3><p>Carbon and biodiversity markets, ESG, and climate finance for working lands.</p><div class="meta"><span class="est">Est. 2025</span><span class="visit" style="color:var(--muted)">Website coming soon</span></div></div>
     </div>
   </div>
 </section>
@@ -200,17 +204,15 @@
   <div class="wrap">
     <div class="entity">
       <div>
-        <div class="kicker">Green Metrics Technology Corp.</div>
+        <div class="kicker">Green Metrics Technology Corp. · Est. 2017</div>
         <h2>Software that accelerates housing</h2>
         <p class="lead">Green Metrics is the group's software arm — the leader in data analytics and intelligence for housing, real estate, and construction. Its platforms turn fragmented public and building data into investment-ready decisions.</p>
       </div>
       <div class="entity-media m-navy"><div><h3>Green Metrics</h3><p style="color:#c7cde0;margin:0">Data &amp; software for accelerating housing growth</p></div></div>
     </div>
     <div class="grid cols-2" style="margin-top:46px">
-      <div class="card"><div class="tag">Product · BuildSense</div><h3>AI for buildings</h3><p>One platform for building energy and asset health: portfolio benchmarking, ASHRAE-level audits and energy-conservation reports, and modular IoT sensors for real-time monitoring — connecting retrofits to low-carbon financing and carbon-credit revenue.</p><div class="pills"><span class="pill">Benchmarking</span><span class="pill">Audits</span><span class="pill">IoT monitoring</span><span class="pill">Carbon finance</span></div></div>
+      <div class="card"><div class="tag">Product · BuildSense</div><h3>System of record for buildings</h3><p>BuildSense is a system of record and regulatory-grade RAG architecture that lets building service providers, engineers, and owners engage with a building's data, information, and performance information in one place.</p><div class="pills"><span class="pill">System of record</span><span class="pill">Regulatory-grade RAG</span><span class="pill">Building data</span><span class="pill">Performance information</span></div></div>
       <div class="card"><div class="tag">Product · BuildBlox</div><h3>Housing intelligence &amp; modular manufacturing</h3><p>AI site screening and identification, development feasibility with standardized pro-formas, Indigenous community planning, and a digital toolkit for modular manufacturers — permit-approved designs, lot selection, and energy/GHG assessments. Powers Open Housing Canada.</p><div class="pills"><span class="pill">Site screening</span><span class="pill">Feasibility</span><span class="pill">Permit-ready designs</span><span class="pill">Modular ERP</span></div></div>
-      <div class="card"><div class="tag">Product · Birch</div><h3>Natural-asset intelligence</h3><p>Natural asset inventories, ecosystem-service valuation, climate-adaptation planning, and infrastructure-replacement analysis — so nature can compete for public and private investment. Powers Open Nature Canada.</p><div class="pills"><span class="pill">Asset inventories</span><span class="pill">Valuation</span><span class="pill">Climate adaptation</span></div></div>
-      <div class="card"><div class="tag">Product · BRICS</div><h3>Building &amp; regional intelligence</h3><p>Part of the Green Metrics portfolio — extending the data and intelligence stack across buildings and regions to support decisions at scale.</p><div class="pills"><span class="pill">Data platform</span><span class="pill">Analytics</span></div></div>
     </div>
   </div>
 </section>
@@ -221,7 +223,7 @@
     <div class="entity rev">
       <div class="entity-media m-sky"><div><h3>Open Housing Canada</h3><p style="color:#cfe0f5;margin:0">DASH — Digitally Accelerated Standardized Housing</p></div></div>
       <div>
-        <div class="kicker">Open Housing Canada · powered by BuildBlox</div>
+        <div class="kicker">Open Housing Canada · powered by BuildBlox · Est. 2025</div>
         <h2>Accelerating Canada's housing delivery</h2>
         <p>A national not-for-profit building Canada's open housing data and AI commons — integrating parcels, zoning, building codes, infrastructure, and market data into one platform. Its DASH program identifies where housing can be built, matches a BIM design catalogue to parcels, and generates compliant, permit-ready packages automatically.</p>
         <div class="stat"><div><b>60%</b><span>soft-cost reduction</span></div><div><b>10×</b><span>faster site feasibility</span></div><div><b>40%</b><span>shorter approvals</span></div></div>
@@ -235,9 +237,9 @@
   <div class="wrap">
     <div class="entity">
       <div>
-        <div class="kicker">Precision Livestock Diagnostics Ltd. · powered by BuildSense</div>
+        <div class="kicker">Precision Livestock Diagnostics Ltd. · powered by BuildSense · Est. 2022</div>
         <h2>A permanent virtual barn hand</h2>
-        <p class="lead">PLD applies AI and IoT to livestock facilities. Its SmartBarn platform combines environmental sensors, energy and air-quality monitoring, and computer vision with audio to watch over animal health and welfare around the clock — supporting "No Antibiotics Ever" production and better feed efficiency.</p>
+        <p class="lead">PLD applies AI and IoT to livestock facilities. Its SmartBarn platform combines environmental sensors, energy and air-quality monitoring, and computer vision with audio to monitor animal health and welfare around the clock.</p>
         <div class="pills"><span class="pill">SmartBarn sensors</span><span class="pill">Computer vision + audio</span><span class="pill">Animal welfare</span><span class="pill">Vet-assisted AI</span></div>
         <p style="margin-top:16px;color:var(--muted);font-size:14px">Partners include Sunterra Farms and Tyson Foods.</p>
       </div>
@@ -252,7 +254,7 @@
     <div class="entity rev">
       <div class="entity-media m-forest"><div><h3>Wolastoqey Forest Partnership</h3><p style="color:#cfe8cf;margin:0">A new Indigenous forest economy</p></div></div>
       <div>
-        <div class="kicker">Wolastoqey Forest Partnership Ltd.</div>
+        <div class="kicker">Wolastoqey Forest Partnership Ltd. · Est. 2026</div>
         <h2>Stewardship that pays</h2>
         <p>An Indigenous-led joint venture between the Wolastoqey Nation and Green Analytics, rooted in generations of stewardship of the Wolastoq watershed. The partnership turns improved forest management into four revenue streams — verified forest carbon credits, nature &amp; biodiversity credits, sustainable timber, and advanced wood products — aggregating woodlots and monitoring forest health through the WFP App.</p>
         <div class="pills"><span class="pill">Forest carbon</span><span class="pill">Biodiversity credits</span><span class="pill">Sustainable timber</span><span class="pill">WFP App</span></div>
@@ -267,7 +269,7 @@
   <div class="wrap">
     <div class="entity">
       <div>
-        <div class="kicker">Impact Natural Capital Corp.</div>
+        <div class="kicker">Impact Natural Capital Corp. · Est. 2025</div>
         <h2>Markets for nature</h2>
         <p class="lead">Impact Natural Capital connects natural-capital and carbon markets to working lands. It brings carbon and biodiversity markets, ESG, climate finance, and nature-based solutions together — and, through partners in agri-food traceability and on-farm climate programs, links verified environmental outcomes to climate finance.</p>
         <div class="pills"><span class="pill">Carbon markets</span><span class="pill">Biodiversity</span><span class="pill">ESG</span><span class="pill">Climate finance</span><span class="pill">TrustBIX / BIX Impact</span><span class="pill">CFGA · OFCAF</span></div>
@@ -283,10 +285,10 @@
     <div class="entity rev">
       <div class="entity-media m-green"><div><h3>Green Analytics Consulting</h3><p style="color:#cfe8cf;margin:0">Environmental economics &amp; analytics</p></div></div>
       <div>
-        <div class="kicker">Green Analytics Consulting Corp.</div>
+        <div class="kicker">Green Analytics Consulting Corp. · Est. 2010</div>
         <h2>Where it started</h2>
-        <p>The consultancy at the group's foundation. We help governments and organizations value nature and plan infrastructure — natural asset inventories, ecosystem-service valuation, climate-risk assessment, GIS and spatial analytics, housing analytics, and Indigenous planning — with projects for municipalities and agencies across Canada.</p>
-        <div class="pills"><span class="pill">Natural asset inventories</span><span class="pill">Ecosystem valuation</span><span class="pill">Climate risk</span><span class="pill">GIS &amp; spatial</span><span class="pill">Indigenous planning</span></div>
+        <p>The consultancy at the group's foundation. We help governments and organizations value nature and plan infrastructure — natural asset inventories, ecosystem-service valuation, climate-risk assessment, GIS and spatial analytics, housing analytics, and Indigenous planning — with projects for municipalities and agencies across Canada. Its natural-asset intelligence platform, <strong>Birch</strong>, supports inventories, ecosystem-service valuation, and climate-adaptation planning.</p>
+        <div class="pills"><span class="pill">Birch platform</span><span class="pill">Natural asset inventories</span><span class="pill">Ecosystem valuation</span><span class="pill">Climate risk</span><span class="pill">GIS &amp; spatial</span><span class="pill">Indigenous planning</span></div>
       </div>
     </div>
   </div>
@@ -405,10 +407,11 @@ async function getAnswer(history){
 }
 function demo(q){return new Promise(r=>{const ql=q.toLowerCase();let a;
   if(/buildblox/.test(ql))a="BuildBlox is Green Metrics Technology's housing-intelligence and modular-manufacturing platform — AI site screening, development feasibility, permit-ready designs, and a digital toolkit for modular manufacturers. It powers Open Housing Canada.";
-  else if(/buildsense/.test(ql))a="BuildSense is our AI platform for buildings — benchmarking, energy audits, and IoT monitoring that connects retrofits to low-carbon financing and carbon-credit revenue.";
+  else if(/buildsense/.test(ql))a="BuildSense is a system of record and regulatory-grade RAG architecture for building service providers, engineers, and owners to engage with a building's data, information, and performance information. It is a Green Metrics Technology product.";
+  else if(/birch/.test(ql))a="Birch is Green Analytics Consulting's natural-asset intelligence platform — natural asset inventories, ecosystem-service valuation, and climate-adaptation planning.";
   else if(/(wolastoqey|wfp|forest)/.test(ql))a="The Wolastoqey Forest Partnership is an Indigenous-led joint venture turning improved forest management into forest-carbon credits, biodiversity credits, sustainable timber, and advanced wood products — monitored through the WFP App in New Brunswick's Acadian Forest.";
   else if(/dash/.test(ql))a="DASH (Digitally Accelerated Standardized Housing) is Open Housing Canada's platform: it maps where housing can be built, matches a BIM design catalogue to parcels, and generates permit-ready packages — cutting soft costs ~60% and approval times ~40%.";
-  else if(/(pld|livestock|barn|swine|pig)/.test(ql))a="Precision Livestock Diagnostics runs SmartBarn — environmental sensors plus computer vision and audio that watch over animal health and welfare 24/7, supporting 'No Antibiotics Ever' production. Partners include Sunterra and Tyson.";
+  else if(/(pld|livestock|barn|swine|pig)/.test(ql))a="Precision Livestock Diagnostics runs SmartBarn — environmental sensors plus computer vision and audio that monitor animal health and welfare 24/7. Partners include Sunterra and Tyson.";
   else if(/(impact|natural capital|carbon|biodiversity)/.test(ql))a="Impact Natural Capital connects carbon and biodiversity markets, ESG, and climate finance to working lands — including agri-food traceability (TrustBIX/BIX) and on-farm climate programs (CFGA/OFCAF).";
   else a="Green Analytics Group builds data infrastructure, analytics platforms, and AI decision-support for Canada's housing and natural-asset challenges, through a family of companies. Ask me about any of them! (Demo mode — connect the RAG endpoint for live, source-grounded answers.)";
   setTimeout(()=>r({reply:a,sources:CONFIG.RAG_ENDPOINT?[]:[{title:"Demo mode"}]}),650+Math.random()*400);});}
