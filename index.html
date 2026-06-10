@@ -42,10 +42,13 @@
 
   /* ---------- HERO ---------- */
   .hero{position:relative;background:radial-gradient(120% 120% at 50% 0%, #0c1230 0%, #050816 70%);color:#fff;overflow:hidden;}
-  .hero-in{display:grid;place-items:center;text-align:center;min-height:88vh;padding:60px 24px 80px;position:relative;z-index:2;}
-  #videoWrap{width:min(76vw,820px);aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.55);transition:transform 1s cubic-bezier(.16,.84,.44,1),opacity .8s,filter 1s;}
+  .hero-in{display:grid;place-items:center;text-align:center;min-height:96vh;padding:60px 24px 90px;position:relative;z-index:2;}
+  #videoWrap{position:relative;width:min(94vw,1500px);max-height:80vh;aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.55);transition:transform 1s cubic-bezier(.16,.84,.44,1),opacity .8s,filter 1s;}
+  #soundBtn{position:absolute;right:16px;bottom:16px;z-index:5;display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:9px 15px;font-size:13.5px;font-family:var(--font);cursor:pointer;backdrop-filter:blur(5px);transition:opacity .3s,background .2s;}
+  #soundBtn:hover{background:rgba(0,0,0,.78);}
+  #soundBtn.hidden{opacity:0;pointer-events:none;}
   #introVideo{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
-  .hero.done #videoWrap{transform:scale(.62) translateY(-8%);filter:brightness(.8);}
+  .hero.done #videoWrap{transform:scale(.70) translateY(-4%);filter:brightness(.85);}
   .hero-copy{position:absolute;left:0;right:0;bottom:9%;opacity:0;transform:translateY(16px);transition:opacity .9s ease .2s,transform .9s ease .2s;pointer-events:none;z-index:3;padding:0 24px;}
   .hero.done .hero-copy{opacity:1;transform:none;pointer-events:auto;}
   .hero-copy h1{color:#fff;font-size:clamp(28px,4.6vw,52px);margin-bottom:14px;}
@@ -144,7 +147,11 @@
 <!-- HERO: video -> chat -->
 <section class="hero" id="hero">
   <div class="hero-in">
-    <div id="videoWrap"><video id="introVideo" playsinline muted preload="auto" src="GreenAnalytics-Logo-Reveal.mp4"></video></div>
+    <div id="videoWrap">
+      <video id="introVideo" playsinline muted preload="auto" src="GreenAnalytics-Logo-Reveal.mp4"></video>
+      <button id="soundBtn" aria-label="Turn on sound"><span>🔊</span> Tap for sound</button>
+    </div>
+    <audio id="bgMusic" loop preload="auto"></audio>
     <div class="hero-copy">
       <h1>Digital infrastructure for <span class="accent">housing</span> &amp; <span class="accent">natural assets</span></h1>
       <p>Green Analytics Group builds the data, analytics platforms, and AI decision-support tools Canada needs to deliver housing and value nature — open, interoperable, and in the public interest.</p>
@@ -340,6 +347,7 @@
    When set, the site POSTs { messages, maxLevel:1 } and expects { reply, sources }. */
 const CONFIG = {
   RAG_ENDPOINT: "",                                  // e.g. "https://<your-app>.up.railway.app/api/chat"
+  MUSIC_SRC: "",                                     // royalty-free opening track — drop the file in this folder and set e.g. "music.mp3"
   GREETING: "Hi! I'm the Green Analytics assistant. Ask me about the group, our companies — Green Metrics, BuildSense, BuildBlox, Birch, Open Housing Canada, Precision Livestock Diagnostics, the Wolastoqey Forest Partnership, or Impact Natural Capital — or how we work.",
   SUGGESTIONS: ["What does Green Analytics Group do?","Tell me about BuildBlox","How does the Wolastoqey Forest Partnership work?","What is DASH?"]
 };
@@ -352,6 +360,20 @@ video.addEventListener('ended',reveal);
 video.addEventListener('canplay',()=>video.play().catch(()=>{}),{once:true});
 window.addEventListener('load',()=>video.play().catch(()=>{}),{once:true});
 skip.addEventListener('click',()=>{try{video.pause();}catch(e){} reveal();});
+
+/* ---- opening soundtrack (royalty-free track set via CONFIG.MUSIC_SRC) ---- */
+const music=document.getElementById('bgMusic'), soundBtn=document.getElementById('soundBtn');
+let soundOn=false;
+if(CONFIG.MUSIC_SRC){
+  music.src=CONFIG.MUSIC_SRC;
+  const enableSound=()=>{ if(soundOn)return; soundOn=true; music.volume=0; music.play().catch(()=>{});
+    let v=0; const f=setInterval(()=>{v=Math.min(0.85,v+0.04); music.volume=v; if(v>=0.85)clearInterval(f);},120);
+    soundBtn.classList.add('hidden'); };
+  soundBtn.addEventListener('click',e=>{e.stopPropagation();enableSound();});
+  window.addEventListener('pointerdown',()=>{ if(!soundOn) enableSound(); },{once:true});
+} else {
+  soundBtn.style.display='none';
+}
 
 /* hero ask bar -> open chat with question */
 document.getElementById('askBar').addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('askInput').value.trim();openChat();if(q){document.getElementById('cpInput').value=q;document.getElementById('cpForm').requestSubmit();document.getElementById('askInput').value='';}});
