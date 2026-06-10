@@ -1,0 +1,12 @@
+{
+  "name": "green-analytics-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Green Analytics Group — public marketing site (static)",
+  "scripts": {
+    "start": "serve -s . -l ${PORT:-8080}"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}

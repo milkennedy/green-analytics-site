@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Green Analytics Group — Digital Infrastructure for Housing & Natural Assets</title>
+<meta name="description" content="Green Analytics Group builds the data infrastructure, analytics platforms, and AI decision-support tools for Canada's housing and natural-asset challenges — across Green Analytics Consulting, Green Metrics Technology (BuildSense, BuildBlox, Birch), Open Housing Canada, Precision Livestock Diagnostics, the Wolastoqey Forest Partnership, and Impact Natural Capital." />
+<link rel="icon" href="GreenAnalytics-Logo.png" />
+<style>
+  :root{
+    --green:#6DBE48; --green-d:#579a36; --green-l:#86D85E;
+    --navy:#050057; --navy-2:#161a6b; --ink:#0c1020;
+    --bg:#ffffff; --bg-soft:#f4f7f2; --bg-dark:#070b1a;
+    --text:#1c2230; --muted:#5d667a; --line:rgba(5,0,87,.10);
+    --r:18px; --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1160px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--font);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{line-height:1.15;letter-spacing:-.02em;color:var(--navy);margin:0 0 .4em;}
+  h2{font-size:clamp(26px,3.4vw,40px);}
+  h3{font-size:20px;}
+  p{margin:0 0 1em;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .accent{color:var(--green-d);}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-d);margin-bottom:14px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .nav-in{display:flex;align-items:center;gap:24px;height:68px;}
+  .nav-in img{height:30px;}
+  .nav-links{display:flex;gap:26px;margin-left:auto;font-size:14.5px;font-weight:500;}
+  .nav-links a{color:var(--navy);opacity:.85;transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;color:var(--green-d);}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#06270b;font-weight:600;border:none;border-radius:999px;padding:11px 20px;cursor:pointer;font-size:14.5px;font-family:var(--font);transition:transform .12s,background .2s;}
+  .btn:hover{background:var(--green-l);} .btn:active{transform:scale(.97);}
+  .btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--line);}
+  .btn.ghost:hover{border-color:var(--green);color:var(--green-d);background:rgba(109,190,72,.08);}
+  @media(max-width:820px){.nav-links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;background:radial-gradient(120% 120% at 50% 0%, #0c1230 0%, #050816 70%);color:#fff;overflow:hidden;}
+  .hero-in{display:grid;place-items:center;text-align:center;min-height:88vh;padding:60px 24px 80px;position:relative;z-index:2;}
+  #videoWrap{width:min(76vw,820px);aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.55);transition:transform 1s cubic-bezier(.16,.84,.44,1),opacity .8s,filter 1s;}
+  #introVideo{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
+  .hero.done #videoWrap{transform:scale(.62) translateY(-8%);filter:brightness(.8);}
+  .hero-copy{position:absolute;left:0;right:0;bottom:9%;opacity:0;transform:translateY(16px);transition:opacity .9s ease .2s,transform .9s ease .2s;pointer-events:none;z-index:3;padding:0 24px;}
+  .hero.done .hero-copy{opacity:1;transform:none;pointer-events:auto;}
+  .hero-copy h1{color:#fff;font-size:clamp(28px,4.6vw,52px);margin-bottom:14px;}
+  .hero-copy p{color:#c7cde0;max-width:680px;margin:0 auto 26px;font-size:clamp(15px,1.6vw,18px);}
+  .ask-bar{display:flex;gap:10px;max-width:560px;margin:0 auto;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 7px 7px 20px;backdrop-filter:blur(8px);}
+  .ask-bar input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:15px;font-family:var(--font);}
+  .ask-bar input::placeholder{color:#9aa3c0;}
+  .skip{position:absolute;right:22px;bottom:22px;z-index:4;font-size:13px;color:#aab2cd;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 15px;cursor:pointer;font-family:var(--font);}
+  .skip:hover{color:#fff;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:84px 0;}
+  .section-soft{background:var(--bg-soft);}
+  .lead{font-size:clamp(17px,2vw,21px);color:var(--text);max-width:760px;}
+  .grid{display:grid;gap:22px;}
+  .cols-3{grid-template-columns:repeat(3,1fr);}
+  .cols-2{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:900px){.cols-3{grid-template-columns:1fr;}.cols-2{grid-template-columns:1fr;}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:transform .2s,box-shadow .2s,border-color .2s;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(5,0,87,.08);border-color:rgba(109,190,72,.4);}
+  .card .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-d);background:rgba(109,190,72,.12);padding:4px 10px;border-radius:999px;margin-bottom:14px;}
+  .card h3{margin-bottom:8px;}
+  .card p{color:var(--muted);font-size:15px;margin:0;}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .pill{font-size:12.5px;font-weight:600;color:var(--navy);background:#eef2ea;border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+
+  /* entity block */
+  .entity{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .entity.rev .entity-media{order:2;}
+  @media(max-width:900px){.entity{grid-template-columns:1fr;gap:24px;}.entity.rev .entity-media{order:0;}}
+  .entity-media{border-radius:var(--r);min-height:300px;display:grid;place-items:center;color:#fff;text-align:center;padding:32px;position:relative;overflow:hidden;}
+  .entity-media h3{color:#fff;font-size:26px;}
+  .m-green{background:linear-gradient(135deg,#0d2316,#2c7a3e);}
+  .m-navy{background:linear-gradient(135deg,#070b2a,#1b2a6b);}
+  .m-teal{background:linear-gradient(135deg,#06281f,#0f6b5a);}
+  .m-forest{background:linear-gradient(135deg,#0a2417,#2f6b34);}
+  .m-earth{background:linear-gradient(135deg,#1a1206,#6b4a1f);}
+  .m-sky{background:linear-gradient(135deg,#0a1a3a,#2566b0);}
+  .stat{display:flex;gap:26px;margin:18px 0 6px;flex-wrap:wrap;}
+  .stat b{display:block;font-size:26px;color:var(--green-d);line-height:1;}
+  .stat span{font-size:12.5px;color:var(--muted);}
+  .kicker{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-d);}
+
+  /* ---------- CTA ---------- */
+  .cta{background:radial-gradient(120% 120% at 50% 0%,#0c1230,#050816);color:#fff;text-align:center;}
+  .cta h2{color:#fff;} .cta p{color:#c7cde0;max-width:620px;margin:0 auto 26px;}
+
+  footer{background:var(--bg-dark);color:#aab2cd;padding:56px 0 40px;font-size:14px;}
+  footer img{height:28px;margin-bottom:14px;}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;}}
+  footer a{color:#aab2cd;} footer a:hover{color:var(--green-l);}
+  footer h4{color:#fff;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px;}
+  footer .muted{color:#6b748f;font-size:12.5px;}
+
+  /* ---------- CHAT PANEL ---------- */
+  #chatToggle{position:fixed;right:22px;bottom:22px;z-index:60;}
+  #chatPanel{position:fixed;right:22px;bottom:22px;z-index:61;width:min(94vw,420px);height:min(76vh,620px);background:#0b0b14;color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 30px 90px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(16px) scale(.98);pointer-events:none;transition:opacity .3s,transform .3s;}
+  #chatPanel.open{opacity:1;transform:none;pointer-events:auto;}
+  .cp-head{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(5,0,87,.4);}
+  .cp-head img{height:22px;} .cp-head .t{font-size:14px;font-weight:600;} .cp-head .x{margin-left:auto;cursor:pointer;color:#9aa3c0;font-size:20px;line-height:1;}
+  .cp-msgs{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:12px;}
+  .msg{max-width:86%;padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;}
+  .msg.bot{align-self:flex-start;background:#14152b;border:1px solid rgba(255,255,255,.08);border-bottom-left-radius:4px;}
+  .msg.user{align-self:flex-end;background:var(--green);color:#06270b;font-weight:500;border-bottom-right-radius:4px;}
+  .src{align-self:flex-start;font-size:11px;color:#8089a3;max-width:86%;}
+  .cp-sug{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px;}
+  .cp-sug button{font-size:12px;color:#aab2cd;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 11px;cursor:pointer;font-family:var(--font);}
+  .cp-sug button:hover{color:#fff;border-color:var(--green);}
+  .cp-form{display:flex;gap:9px;padding:13px;border-top:1px solid rgba(255,255,255,.08);}
+  .cp-form input{flex:1;background:#05060f;border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;padding:11px 13px;outline:none;font-family:var(--font);font-size:14px;}
+  .cp-form input:focus{border-color:var(--green);}
+  .cp-form button{background:var(--green);border:none;border-radius:11px;width:44px;display:grid;place-items:center;cursor:pointer;color:#06270b;}
+  .typing{align-self:flex-start;display:flex;gap:5px;padding:12px 14px;background:#14152b;border-radius:14px;}
+  .typing span{width:6px;height:6px;border-radius:50%;background:#8089a3;animation:b 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:.2s;}.typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes b{0%,60%,100%{opacity:.25;}30%{opacity:1;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav"><div class="wrap nav-in">
+  <img src="GreenAnalytics-Logo.png" alt="Green Analytics Group" />
+  <nav class="nav-links">
+    <a href="#group">Group</a>
+    <a href="#companies">Companies</a>
+    <a href="#products">Products</a>
+    <a href="#impact">Impact</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="btn" onclick="openChat()">Ask our AI</button>
+</div></header>
+
+<!-- HERO: video -> chat -->
+<section class="hero" id="hero">
+  <div class="hero-in">
+    <div id="videoWrap"><video id="introVideo" playsinline muted preload="auto" src="GreenAnalytics-Logo-Reveal.mp4"></video></div>
+    <div class="hero-copy">
+      <h1>Digital infrastructure for <span class="accent">housing</span> &amp; <span class="accent">natural assets</span></h1>
+      <p>Green Analytics Group builds the data, analytics platforms, and AI decision-support tools Canada needs to deliver housing and value nature — open, interoperable, and in the public interest.</p>
+      <form class="ask-bar" id="askBar" autocomplete="off">
+        <input id="askInput" placeholder="Ask us anything about our work…" aria-label="Ask a question" />
+        <button class="btn" type="submit">Ask →</button>
+      </form>
+    </div>
+  </div>
+  <button class="skip" id="skipBtn">Skip intro →</button>
+</section>
+
+<!-- GROUP -->
+<section id="group">
+  <div class="wrap">
+    <div class="eyebrow">The Group</div>
+    <h2>One mission, a family of companies</h2>
+    <p class="lead">Green Analytics Group is a mission-driven organization that builds data infrastructure, analytics platforms, and decision-support tools to address Canada's most pressing housing and environmental challenges. We collect and steward trusted data, organize it into open national commons, and apply advanced analytics and AI — so governments, builders, and communities can allocate capital efficiently, accelerate delivery, and improve environmental outcomes.</p>
+    <div class="grid cols-3" style="margin-top:36px">
+      <div class="card"><div class="tag">Open Data</div><h3>Trusted commons</h3><p>National repositories and standards for housing and natural-asset data — open, interoperable, and Indigenous-data-sovereignty aware.</p></div>
+      <div class="card"><div class="tag">Intelligence</div><h3>AI decision support</h3><p>BuildBlox and Birch turn open data into site assessments, valuations, risk analysis, and investment-ready recommendations.</p></div>
+      <div class="card"><div class="tag">Outcomes</div><h3>Better decisions</h3><p>Faster project delivery, reduced risk, smarter capital allocation, and measurable environmental and community benefit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANIES OVERVIEW -->
+<section class="section-soft" id="companies">
+  <div class="wrap">
+    <div class="eyebrow">Companies</div>
+    <h2>Six companies. One source of truth.</h2>
+    <p class="lead">From environmental economics to housing software, agriculture to forestry to natural-capital markets — each company applies shared data infrastructure to a critical sector.</p>
+    <div class="grid cols-3" style="margin-top:36px">
+      <div class="card"><div class="tag">Consulting</div><h3>Green Analytics Consulting</h3><p>Natural asset management, ecosystem service valuation, climate-risk and environmental economics for governments across Canada.</p></div>
+      <div class="card"><div class="tag">Software</div><h3>Green Metrics Technology</h3><p>Data &amp; software for housing and buildings — BuildSense, BuildBlox, Birch, and BRICS.</p></div>
+      <div class="card"><div class="tag">Housing</div><h3>Open Housing Canada</h3><p>Canada's open housing data &amp; AI commons, accelerating delivery with the DASH platform.</p></div>
+      <div class="card"><div class="tag">AgTech</div><h3>Precision Livestock Diagnostics</h3><p>SmartBarn analytics and computer vision for healthier herds and better welfare outcomes.</p></div>
+      <div class="card"><div class="tag">Forestry</div><h3>Wolastoqey Forest Partnership</h3><p>An Indigenous-led forest economy — carbon, biodiversity, and sustainable timber.</p></div>
+      <div class="card"><div class="tag">Natural Capital</div><h3>Impact Natural Capital</h3><p>Carbon and biodiversity markets, ESG, and climate finance for working lands.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GREEN METRICS + PRODUCTS -->
+<section id="products">
+  <div class="wrap">
+    <div class="entity">
+      <div>
+        <div class="kicker">Green Metrics Technology Corp.</div>
+        <h2>Software that accelerates housing</h2>
+        <p class="lead">Green Metrics is the group's software arm — the leader in data analytics and intelligence for housing, real estate, and construction. Its platforms turn fragmented public and building data into investment-ready decisions.</p>
+      </div>
+      <div class="entity-media m-navy"><div><h3>Green Metrics</h3><p style="color:#c7cde0;margin:0">Data &amp; software for accelerating housing growth</p></div></div>
+    </div>
+    <div class="grid cols-2" style="margin-top:46px">
+      <div class="card"><div class="tag">Product · BuildSense</div><h3>AI for buildings</h3><p>One platform for building energy and asset health: portfolio benchmarking, ASHRAE-level audits and energy-conservation reports, and modular IoT sensors for real-time monitoring — connecting retrofits to low-carbon financing and carbon-credit revenue.</p><div class="pills"><span class="pill">Benchmarking</span><span class="pill">Audits</span><span class="pill">IoT monitoring</span><span class="pill">Carbon finance</span></div></div>
+      <div class="card"><div class="tag">Product · BuildBlox</div><h3>Housing intelligence &amp; modular manufacturing</h3><p>AI site screening and identification, development feasibility with standardized pro-formas, Indigenous community planning, and a digital toolkit for modular manufacturers — permit-approved designs, lot selection, and energy/GHG assessments. Powers Open Housing Canada.</p><div class="pills"><span class="pill">Site screening</span><span class="pill">Feasibility</span><span class="pill">Permit-ready designs</span><span class="pill">Modular ERP</span></div></div>
+      <div class="card"><div class="tag">Product · Birch</div><h3>Natural-asset intelligence</h3><p>Natural asset inventories, ecosystem-service valuation, climate-adaptation planning, and infrastructure-replacement analysis — so nature can compete for public and private investment. Powers Open Nature Canada.</p><div class="pills"><span class="pill">Asset inventories</span><span class="pill">Valuation</span><span class="pill">Climate adaptation</span></div></div>
+      <div class="card"><div class="tag">Product · BRICS</div><h3>Building &amp; regional intelligence</h3><p>Part of the Green Metrics portfolio — extending the data and intelligence stack across buildings and regions to support decisions at scale.</p><div class="pills"><span class="pill">Data platform</span><span class="pill">Analytics</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN HOUSING CANADA / DASH -->
+<section class="section-soft">
+  <div class="wrap">
+    <div class="entity rev">
+      <div class="entity-media m-sky"><div><h3>Open Housing Canada</h3><p style="color:#cfe0f5;margin:0">DASH — Digitally Accelerated Standardized Housing</p></div></div>
+      <div>
+        <div class="kicker">Open Housing Canada · powered by BuildBlox</div>
+        <h2>Accelerating Canada's housing delivery</h2>
+        <p>A national not-for-profit building Canada's open housing data and AI commons — integrating parcels, zoning, building codes, infrastructure, and market data into one platform. Its DASH program identifies where housing can be built, matches a BIM design catalogue to parcels, and generates compliant, permit-ready packages automatically.</p>
+        <div class="stat"><div><b>60%</b><span>soft-cost reduction</span></div><div><b>10×</b><span>faster site feasibility</span></div><div><b>40%</b><span>shorter approvals</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLD -->
+<section>
+  <div class="wrap">
+    <div class="entity">
+      <div>
+        <div class="kicker">Precision Livestock Diagnostics Ltd. · powered by BuildSense</div>
+        <h2>A permanent virtual barn hand</h2>
+        <p class="lead">PLD applies AI and IoT to livestock facilities. Its SmartBarn platform combines environmental sensors, energy and air-quality monitoring, and computer vision with audio to watch over animal health and welfare around the clock — supporting "No Antibiotics Ever" production and better feed efficiency.</p>
+        <div class="pills"><span class="pill">SmartBarn sensors</span><span class="pill">Computer vision + audio</span><span class="pill">Animal welfare</span><span class="pill">Vet-assisted AI</span></div>
+        <p style="margin-top:16px;color:var(--muted);font-size:14px">Partners include Sunterra Farms and Tyson Foods.</p>
+      </div>
+      <div class="entity-media m-earth"><div><h3>Precision Livestock Diagnostics</h3><p style="color:#e8d9bf;margin:0">AI for agriculture facility management</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WFP -->
+<section class="section-soft">
+  <div class="wrap">
+    <div class="entity rev">
+      <div class="entity-media m-forest"><div><h3>Wolastoqey Forest Partnership</h3><p style="color:#cfe8cf;margin:0">A new Indigenous forest economy</p></div></div>
+      <div>
+        <div class="kicker">Wolastoqey Forest Partnership Ltd.</div>
+        <h2>Stewardship that pays</h2>
+        <p>An Indigenous-led joint venture between the Wolastoqey Nation and Green Analytics, rooted in generations of stewardship of the Wolastoq watershed. The partnership turns improved forest management into four revenue streams — verified forest carbon credits, nature &amp; biodiversity credits, sustainable timber, and advanced wood products — aggregating woodlots and monitoring forest health through the WFP App.</p>
+        <div class="pills"><span class="pill">Forest carbon</span><span class="pill">Biodiversity credits</span><span class="pill">Sustainable timber</span><span class="pill">WFP App</span></div>
+        <p style="margin-top:16px;color:var(--muted);font-size:14px">Acadian Forest, New Brunswick.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT NATURAL CAPITAL -->
+<section id="impact">
+  <div class="wrap">
+    <div class="entity">
+      <div>
+        <div class="kicker">Impact Natural Capital Corp.</div>
+        <h2>Markets for nature</h2>
+        <p class="lead">Impact Natural Capital connects natural-capital and carbon markets to working lands. It brings carbon and biodiversity markets, ESG, climate finance, and nature-based solutions together — and, through partners in agri-food traceability and on-farm climate programs, links verified environmental outcomes to climate finance.</p>
+        <div class="pills"><span class="pill">Carbon markets</span><span class="pill">Biodiversity</span><span class="pill">ESG</span><span class="pill">Climate finance</span><span class="pill">TrustBIX / BIX Impact</span><span class="pill">CFGA · OFCAF</span></div>
+      </div>
+      <div class="entity-media m-teal"><div><h3>Impact Natural Capital</h3><p style="color:#bdeee0;margin:0">Carbon · biodiversity · climate finance</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTING -->
+<section class="section-soft">
+  <div class="wrap">
+    <div class="entity rev">
+      <div class="entity-media m-green"><div><h3>Green Analytics Consulting</h3><p style="color:#cfe8cf;margin:0">Environmental economics &amp; analytics</p></div></div>
+      <div>
+        <div class="kicker">Green Analytics Consulting Corp.</div>
+        <h2>Where it started</h2>
+        <p>The consultancy at the group's foundation. We help governments and organizations value nature and plan infrastructure — natural asset inventories, ecosystem-service valuation, climate-risk assessment, GIS and spatial analytics, housing analytics, and Indigenous planning — with projects for municipalities and agencies across Canada.</p>
+        <div class="pills"><span class="pill">Natural asset inventories</span><span class="pill">Ecosystem valuation</span><span class="pill">Climate risk</span><span class="pill">GIS &amp; spatial</span><span class="pill">Indigenous planning</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--green-l)">Let's build</div>
+    <h2>Housing and nature, planned as one system</h2>
+    <p>Talk to our AI assistant to explore our work, or reach the team directly.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn" onclick="openChat()">Ask our AI</button>
+      <a class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.25)" href="mailto:info@greenanalytics.ca">Email the team</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap foot-grid">
+    <div>
+      <img src="GreenAnalytics-Logo.png" alt="Green Analytics Group" />
+      <p style="max-width:360px">Digital infrastructure for housing and natural assets — open, interoperable, and in service of the public good.</p>
+      <p class="muted">#413, 3428 99 St NW, Edmonton, AB · Victoria · Vancouver · Calgary · Toronto</p>
+    </div>
+    <div>
+      <h4>Companies</h4>
+      <p><a href="#companies">Green Analytics Consulting</a><br><a href="#products">Green Metrics Technology</a><br><a href="#products">Open Housing Canada</a><br><a href="#impact">Impact Natural Capital</a></p>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <p><a href="mailto:info@greenanalytics.ca">info@greenanalytics.ca</a><br><a href="https://www.greenanalytics.ca" target="_blank" rel="noopener">greenanalytics.ca</a></p>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:34px;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <span class="muted">© 2026 Green Analytics Group</span>
+    <span class="muted">AI assistant answers from public information — verify important details.</span>
+  </div>
+</footer>
+
+<!-- CHAT -->
+<button class="btn" id="chatToggle" onclick="openChat()">💬 Ask our AI</button>
+<section id="chatPanel" aria-label="Green Analytics assistant">
+  <div class="cp-head"><img src="GreenAnalytics-Logo.png" alt=""><span class="t">Green Analytics Assistant</span><span class="x" onclick="closeChat()">×</span></div>
+  <div class="cp-msgs" id="cpMsgs" aria-live="polite"></div>
+  <div class="cp-sug" id="cpSug"></div>
+  <form class="cp-form" id="cpForm" autocomplete="off">
+    <input id="cpInput" placeholder="Ask about our companies, products, or work…" aria-label="Type your question" />
+    <button type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l16-8-6 8 6 8-16-8z" fill="currentColor"/></svg></button>
+  </form>
+</section>
+
+<script>
+/* ====== CONFIG ======
+   RAG_ENDPOINT: your deployed corpus chat API (Level-1/public). Leave blank to run in
+   DEMO mode (sample answers) so the site is fully reviewable before the backend is live.
+   When set, the site POSTs { messages, maxLevel:1 } and expects { reply, sources }. */
+const CONFIG = {
+  RAG_ENDPOINT: "",                                  // e.g. "https://<your-app>.up.railway.app/api/chat"
+  GREETING: "Hi! I'm the Green Analytics assistant. Ask me about the group, our companies — Green Metrics, BuildSense, BuildBlox, Birch, Open Housing Canada, Precision Livestock Diagnostics, the Wolastoqey Forest Partnership, or Impact Natural Capital — or how we work.",
+  SUGGESTIONS: ["What does Green Analytics Group do?","Tell me about BuildBlox","How does the Wolastoqey Forest Partnership work?","What is DASH?"]
+};
+
+/* ---- intro video -> hero copy ---- */
+const hero=document.getElementById('hero'), video=document.getElementById('introVideo'), skip=document.getElementById('skipBtn');
+let revealed=false;
+const reveal=()=>{ if(revealed)return; revealed=true; hero.classList.add('done'); skip.style.opacity='0'; };
+video.addEventListener('ended',reveal);
+video.addEventListener('canplay',()=>video.play().catch(()=>{}),{once:true});
+window.addEventListener('load',()=>video.play().catch(()=>{}),{once:true});
+skip.addEventListener('click',()=>{try{video.pause();}catch(e){} reveal();});
+
+/* hero ask bar -> open chat with question */
+document.getElementById('askBar').addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('askInput').value.trim();openChat();if(q){document.getElementById('cpInput').value=q;document.getElementById('cpForm').requestSubmit();document.getElementById('askInput').value='';}});
+
+/* ---- chat panel ---- */
+const panel=document.getElementById('chatPanel'),toggle=document.getElementById('chatToggle'),msgs=document.getElementById('cpMsgs'),sug=document.getElementById('cpSug');
+let started=false;
+function openChat(){panel.classList.add('open');toggle.style.display='none';if(!started){started=true;bot(CONFIG.GREETING);renderSug();}document.getElementById('cpInput').focus();}
+function closeChat(){panel.classList.remove('open');toggle.style.display='';}
+function bot(t,sources){const e=document.createElement('div');e.className='msg bot';e.textContent=t;msgs.appendChild(e);if(sources&&sources.length){const s=document.createElement('div');s.className='src';s.textContent='Sources: '+sources.map(x=>x.title+(x.organization?' ('+x.organization+')':'')).join(' · ');msgs.appendChild(s);}down();}
+function user(t){const e=document.createElement('div');e.className='msg user';e.textContent=t;msgs.appendChild(e);down();}
+function typing(on){let t=document.getElementById('typing');if(on&&!t){t=document.createElement('div');t.className='typing';t.id='typing';t.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(t);}else if(!on&&t)t.remove();down();}
+function down(){msgs.scrollTop=msgs.scrollHeight;}
+function renderSug(){sug.innerHTML='';CONFIG.SUGGESTIONS.forEach(q=>{const b=document.createElement('button');b.type='button';b.textContent=q;b.onclick=()=>{document.getElementById('cpInput').value=q;document.getElementById('cpForm').requestSubmit();};sug.appendChild(b);});}
+
+const history=[];
+document.getElementById('cpForm').addEventListener('submit',async e=>{
+  e.preventDefault();const inp=document.getElementById('cpInput');const text=inp.value.trim();if(!text)return;
+  inp.value='';sug.innerHTML='';user(text);history.push({role:'user',content:text});typing(true);
+  try{const {reply,sources}=await getAnswer(history);typing(false);bot(reply,sources);history.push({role:'assistant',content:reply});}
+  catch(err){typing(false);bot("Sorry — I couldn't reach the assistant just now. Please try again, or email info@greenanalytics.ca.");console.error(err);}
+});
+
+async function getAnswer(history){
+  if(!CONFIG.RAG_ENDPOINT) return demo(history[history.length-1].content);
+  const res=await fetch(CONFIG.RAG_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history,maxLevel:1})});
+  if(!res.ok)throw new Error('endpoint '+res.status);
+  const d=await res.json();return {reply:d.reply??'(no reply)',sources:d.sources??[]};
+}
+function demo(q){return new Promise(r=>{const ql=q.toLowerCase();let a;
+  if(/buildblox/.test(ql))a="BuildBlox is Green Metrics Technology's housing-intelligence and modular-manufacturing platform — AI site screening, development feasibility, permit-ready designs, and a digital toolkit for modular manufacturers. It powers Open Housing Canada.";
+  else if(/buildsense/.test(ql))a="BuildSense is our AI platform for buildings — benchmarking, energy audits, and IoT monitoring that connects retrofits to low-carbon financing and carbon-credit revenue.";
+  else if(/(wolastoqey|wfp|forest)/.test(ql))a="The Wolastoqey Forest Partnership is an Indigenous-led joint venture turning improved forest management into forest-carbon credits, biodiversity credits, sustainable timber, and advanced wood products — monitored through the WFP App in New Brunswick's Acadian Forest.";
+  else if(/dash/.test(ql))a="DASH (Digitally Accelerated Standardized Housing) is Open Housing Canada's platform: it maps where housing can be built, matches a BIM design catalogue to parcels, and generates permit-ready packages — cutting soft costs ~60% and approval times ~40%.";
+  else if(/(pld|livestock|barn|swine|pig)/.test(ql))a="Precision Livestock Diagnostics runs SmartBarn — environmental sensors plus computer vision and audio that watch over animal health and welfare 24/7, supporting 'No Antibiotics Ever' production. Partners include Sunterra and Tyson.";
+  else if(/(impact|natural capital|carbon|biodiversity)/.test(ql))a="Impact Natural Capital connects carbon and biodiversity markets, ESG, and climate finance to working lands — including agri-food traceability (TrustBIX/BIX) and on-farm climate programs (CFGA/OFCAF).";
+  else a="Green Analytics Group builds data infrastructure, analytics platforms, and AI decision-support for Canada's housing and natural-asset challenges, through a family of companies. Ask me about any of them! (Demo mode — connect the RAG endpoint for live, source-grounded answers.)";
+  setTimeout(()=>r({reply:a,sources:CONFIG.RAG_ENDPOINT?[]:[{title:"Demo mode"}]}),650+Math.random()*400);});}
+</script>
+</body>
+</html>
