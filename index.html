@@ -118,6 +118,8 @@
   .msg{max-width:86%;padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;}
   .msg.bot{align-self:flex-start;background:#14152b;border:1px solid rgba(255,255,255,.08);border-bottom-left-radius:4px;}
   .msg.user{align-self:flex-end;background:var(--green);color:#06270b;font-weight:500;border-bottom-right-radius:4px;}
+  .msg.bot a.ref{color:#86D85E;text-decoration:none;font-weight:700;font-size:.78em;vertical-align:super;padding:0 1px;}
+  .msg.bot a.ref:hover{text-decoration:underline;}
   .src{align-self:flex-start;font-size:11px;color:#8089a3;max-width:86%;}
   .cp-sug{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px;}
   .cp-sug button{font-size:12px;color:#aab2cd;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 11px;cursor:pointer;font-family:var(--font);}
@@ -388,7 +390,8 @@ let started=false;
 function openChat(){panel.classList.add('open');toggle.style.display='none';if(!started){started=true;bot(CONFIG.GREETING);renderSug();}document.getElementById('cpInput').focus();}
 function closeChat(){panel.classList.remove('open');toggle.style.display='';}
 function clean(t){return (t||'').replace(/\*+/g,'').replace(/^#{1,6}\s*/gm,'').replace(/`/g,'').replace(/\n{3,}/g,'\n\n').trim();}
-function bot(t,sources){const e=document.createElement('div');e.className='msg bot';e.textContent=clean(t);msgs.appendChild(e);if(sources&&sources.length){const s=document.createElement('div');s.className='src';s.textContent='Sources: '+sources.map(x=>x.title+(x.organization?' ('+x.organization+')':'')).join(' · ');msgs.appendChild(s);}down();}
+function esc(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function bot(t,sources){const e=document.createElement('div');e.className='msg bot';const map={};(sources||[]).forEach(s=>{map[s.index]=s;});e.innerHTML=esc(clean(t)).replace(/\[(\d+)\]/g,(m,n)=>{const s=map[n];return (s&&s.url)?`<a class="ref" href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.title||'')}">[${n}]</a>`:m;});msgs.appendChild(e);down();}
 function user(t){const e=document.createElement('div');e.className='msg user';e.textContent=t;msgs.appendChild(e);down();}
 function typing(on){let t=document.getElementById('typing');if(on&&!t){t=document.createElement('div');t.className='typing';t.id='typing';t.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(t);}else if(!on&&t)t.remove();down();}
 function down(){msgs.scrollTop=msgs.scrollHeight;}
