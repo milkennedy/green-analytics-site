@@ -29,8 +29,8 @@
 
   /* ---------- NAV ---------- */
   header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
-  .nav-in{display:flex;align-items:center;gap:24px;height:68px;}
-  .nav-in img{height:30px;}
+  .nav-in{display:flex;align-items:center;gap:24px;height:104px;}
+  .nav-in img{height:90px;}
   .nav-links{display:flex;gap:26px;margin-left:auto;font-size:14.5px;font-weight:500;}
   .nav-links a{color:var(--navy);opacity:.85;transition:opacity .2s;}
   .nav-links a:hover{opacity:1;color:var(--green-d);}
@@ -193,7 +193,7 @@
       <div class="card"><div class="tag">Software</div><h3>Green Metrics Technology</h3><p>Data &amp; software for housing and buildings — BuildSense and BuildBlox.</p><div class="meta"><span class="est">Est. 2017</span><a class="visit" href="https://www.greenmetrics.ca" target="_blank" rel="noopener">Visit website ↗</a></div></div>
       <div class="card"><div class="tag">Housing</div><h3>Open Housing Canada</h3><p>Canada's open housing data &amp; AI commons, accelerating delivery with the DASH platform.</p><div class="meta"><span class="est">Est. 2025</span><a class="visit" href="https://openhousingcanada.ca" target="_blank" rel="noopener">Visit website ↗</a></div></div>
       <div class="card"><div class="tag">AgTech</div><h3>Precision Livestock Diagnostics</h3><p>SmartBarn analytics and computer vision for healthier herds and better welfare outcomes.</p><div class="meta"><span class="est">Est. 2022</span><a class="visit" href="https://www.precisionlivestockdiagnostics.com" target="_blank" rel="noopener">Visit website ↗</a></div></div>
-      <div class="card"><div class="tag">Forestry</div><h3>Wolastoqey Forest Partnership</h3><p>An Indigenous-led forest economy — carbon, biodiversity, and sustainable timber.</p><div class="meta"><span class="est">Est. 2026</span><span class="visit" style="color:var(--muted)">Website coming soon</span></div></div>
+      <div class="card"><div class="tag">Forestry</div><h3>Wolastoqey Forest Partnership</h3><p>An Indigenous-led forest economy — carbon, biodiversity, and sustainable timber.</p><div class="meta"><span class="est">Est. 2026</span><a class="visit" href="https://wfp-website-production.up.railway.app" target="_blank" rel="noopener">Visit website ↗</a></div></div>
       <div class="card"><div class="tag">Natural Capital</div><h3>Impact Natural Capital</h3><p>Carbon and biodiversity markets, ESG, and climate finance for working lands.</p><div class="meta"><span class="est">Est. 2025</span><span class="visit" style="color:var(--muted)">Website coming soon</span></div></div>
     </div>
   </div>
@@ -358,9 +358,11 @@ const CONFIG = {
 const hero=document.getElementById('hero'), video=document.getElementById('introVideo'), skip=document.getElementById('skipBtn');
 let revealed=false;
 const reveal=()=>{ if(revealed)return; revealed=true; hero.classList.add('done'); skip.style.opacity='0'; };
+video.playbackRate=2;   // play the intro twice as fast
 video.addEventListener('ended',reveal);
-video.addEventListener('canplay',()=>video.play().catch(()=>{}),{once:true});
-window.addEventListener('load',()=>video.play().catch(()=>{}),{once:true});
+video.addEventListener('loadedmetadata',()=>{video.playbackRate=2;});
+video.addEventListener('canplay',()=>{video.playbackRate=2;video.play().catch(()=>{});},{once:true});
+window.addEventListener('load',()=>{video.playbackRate=2;video.play().catch(()=>{});},{once:true});
 skip.addEventListener('click',()=>{try{video.pause();}catch(e){} reveal();});
 
 /* ---- opening soundtrack (royalty-free track set via CONFIG.MUSIC_SRC) ---- */
@@ -385,7 +387,8 @@ const panel=document.getElementById('chatPanel'),toggle=document.getElementById(
 let started=false;
 function openChat(){panel.classList.add('open');toggle.style.display='none';if(!started){started=true;bot(CONFIG.GREETING);renderSug();}document.getElementById('cpInput').focus();}
 function closeChat(){panel.classList.remove('open');toggle.style.display='';}
-function bot(t,sources){const e=document.createElement('div');e.className='msg bot';e.textContent=t;msgs.appendChild(e);if(sources&&sources.length){const s=document.createElement('div');s.className='src';s.textContent='Sources: '+sources.map(x=>x.title+(x.organization?' ('+x.organization+')':'')).join(' · ');msgs.appendChild(s);}down();}
+function clean(t){return (t||'').replace(/\*+/g,'').replace(/^#{1,6}\s*/gm,'').replace(/`/g,'').replace(/\n{3,}/g,'\n\n').trim();}
+function bot(t,sources){const e=document.createElement('div');e.className='msg bot';e.textContent=clean(t);msgs.appendChild(e);if(sources&&sources.length){const s=document.createElement('div');s.className='src';s.textContent='Sources: '+sources.map(x=>x.title+(x.organization?' ('+x.organization+')':'')).join(' · ');msgs.appendChild(s);}down();}
 function user(t){const e=document.createElement('div');e.className='msg user';e.textContent=t;msgs.appendChild(e);down();}
 function typing(on){let t=document.getElementById('typing');if(on&&!t){t=document.createElement('div');t.className='typing';t.id='typing';t.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(t);}else if(!on&&t)t.remove();down();}
 function down(){msgs.scrollTop=msgs.scrollHeight;}
