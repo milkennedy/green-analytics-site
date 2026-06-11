@@ -348,7 +348,7 @@
    DEMO mode (sample answers) so the site is fully reviewable before the backend is live.
    When set, the site POSTs { messages, maxLevel:1 } and expects { reply, sources }. */
 const CONFIG = {
-  RAG_ENDPOINT: "",                                  // e.g. "https://<your-app>.up.railway.app/api/chat"
+  RAG_ENDPOINT: "https://green-analytics-corpus-production.up.railway.app/api/chat",  // live corpus chat (Level-1 public)
   MUSIC_SRC: "",                                     // royalty-free opening track — drop the file in this folder and set e.g. "music.mp3"
   GREETING: "Hi! I'm the Green Analytics assistant. Ask me about the group, our companies — Green Metrics, BuildSense, BuildBlox, Birch, Open Housing Canada, Precision Livestock Diagnostics, the Wolastoqey Forest Partnership, or Impact Natural Capital — or how we work.",
   SUGGESTIONS: ["What does Green Analytics Group do?","Tell me about BuildBlox","How does the Wolastoqey Forest Partnership work?","What is DASH?"]
