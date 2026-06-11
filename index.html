@@ -44,9 +44,10 @@
   .hero{position:relative;background:radial-gradient(120% 120% at 50% 0%, #0c1230 0%, #050816 70%);color:#fff;overflow:hidden;}
   .hero-in{display:grid;place-items:center;text-align:center;min-height:96vh;padding:60px 24px 90px;position:relative;z-index:2;}
   #videoWrap{position:relative;width:min(94vw,1500px);max-height:80vh;aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.55);transition:transform 1s cubic-bezier(.16,.84,.44,1),opacity .8s,filter 1s;}
-  #soundBtn{position:absolute;right:16px;bottom:16px;z-index:5;display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:9px 15px;font-size:13.5px;font-family:var(--font);cursor:pointer;backdrop-filter:blur(5px);transition:opacity .3s,background .2s;}
-  #soundBtn:hover{background:rgba(0,0,0,.78);}
+  #soundBtn{position:fixed;left:22px;bottom:22px;z-index:62;display:flex;align-items:center;gap:7px;background:var(--navy);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:11px 18px;font-size:14px;font-weight:600;font-family:var(--font);cursor:pointer;box-shadow:0 10px 28px rgba(5,0,87,.35);animation:sbpulse 2.2s ease-in-out infinite;transition:opacity .3s,background .2s;}
+  #soundBtn:hover{background:var(--navy-2);}
   #soundBtn.hidden{opacity:0;pointer-events:none;}
+  @keyframes sbpulse{0%,100%{box-shadow:0 10px 28px rgba(5,0,87,.35);}50%{box-shadow:0 10px 34px rgba(109,190,72,.55);}}
   #introVideo{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
   .hero.done #videoWrap{transform:scale(.70) translateY(-4%);filter:brightness(.85);}
   .hero-copy{position:absolute;left:0;right:0;bottom:9%;opacity:0;transform:translateY(16px);transition:opacity .9s ease .2s,transform .9s ease .2s;pointer-events:none;z-index:3;padding:0 24px;}
@@ -155,8 +156,8 @@
   <div class="hero-in">
     <div id="videoWrap">
       <video id="introVideo" playsinline muted preload="auto" src="GreenAnalytics-Logo-Reveal.mp4"></video>
-      <button id="soundBtn" aria-label="Turn on sound"><span>🔊</span> Tap for sound</button>
     </div>
+    <button id="soundBtn" aria-label="Turn on sound"><span>🔊</span> Tap for sound</button>
     <audio id="bgMusic" loop preload="auto"></audio>
     <div class="hero-copy">
       <h1>Digital infrastructure for <span class="accent">housing</span> &amp; <span class="accent">natural assets</span></h1>
@@ -358,8 +359,9 @@ const CONFIG = {
 
 /* ---- intro video -> hero copy ---- */
 const hero=document.getElementById('hero'), video=document.getElementById('introVideo'), skip=document.getElementById('skipBtn');
-let revealed=false;
-const reveal=()=>{ if(revealed)return; revealed=true; hero.classList.add('done'); skip.style.opacity='0'; };
+let revealed=false, introDone=false;
+function fadeOutMusic(){ const m=document.getElementById('bgMusic'); const sb=document.getElementById('soundBtn'); if(sb) sb.classList.add('hidden'); if(!m||m.paused) return; let v=m.volume; const f=setInterval(()=>{ v=Math.max(0,v-0.07); m.volume=Math.max(0,v); if(v<=0){ clearInterval(f); try{m.pause();}catch(e){} } },55); }
+const reveal=()=>{ if(revealed)return; revealed=true; hero.classList.add('done'); skip.style.opacity='0'; introDone=true; fadeOutMusic(); };
 video.playbackRate=2;   // play the intro twice as fast
 video.addEventListener('ended',reveal);
 video.addEventListener('loadedmetadata',()=>{video.playbackRate=2;});
@@ -367,16 +369,21 @@ video.addEventListener('canplay',()=>{video.playbackRate=2;video.play().catch(()
 window.addEventListener('load',()=>{video.playbackRate=2;video.play().catch(()=>{});},{once:true});
 skip.addEventListener('click',()=>{try{video.pause();}catch(e){} reveal();});
 
-/* ---- opening soundtrack (royalty-free track set via CONFIG.MUSIC_SRC) ---- */
+/* ---- opening soundtrack: starts on first interaction, fades out as the chat appears ---- */
 const music=document.getElementById('bgMusic'), soundBtn=document.getElementById('soundBtn');
 let soundOn=false;
 if(CONFIG.MUSIC_SRC){
-  music.src=CONFIG.MUSIC_SRC;
-  const enableSound=()=>{ if(soundOn)return; soundOn=true; music.volume=0; music.play().catch(()=>{});
-    let v=0; const f=setInterval(()=>{v=Math.min(0.85,v+0.04); music.volume=v; if(v>=0.85)clearInterval(f);},120);
-    soundBtn.classList.add('hidden'); };
-  soundBtn.addEventListener('click',e=>{e.stopPropagation();enableSound();});
-  window.addEventListener('pointerdown',()=>{ if(!soundOn) enableSound(); },{once:true});
+  music.src=CONFIG.MUSIC_SRC; music.loop=true;
+  const startMusic=()=>{
+    if(soundOn||introDone) return;                 // music is only for the intro
+    music.muted=false; music.volume=0;
+    const p=music.play();
+    if(p&&p.then){ p.then(()=>{ soundOn=true; soundBtn.classList.add('hidden');
+      let v=0; const f=setInterval(()=>{ v=Math.min(0.85,v+0.08); music.volume=v; if(v>=0.85||introDone) clearInterval(f); },80);
+    }).catch(()=>{}); }
+  };
+  soundBtn.addEventListener('click',e=>{e.stopPropagation();startMusic();});
+  ['pointerdown','click','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,startMusic,{passive:true}));
 } else {
   soundBtn.style.display='none';
 }
