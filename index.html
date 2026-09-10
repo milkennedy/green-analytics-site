@@ -43,13 +43,13 @@
   /* ---------- HERO ---------- */
   .hero{position:relative;background:radial-gradient(120% 120% at 50% 0%, #0c1230 0%, #050816 70%);color:#fff;overflow:hidden;}
   .hero-in{display:grid;place-items:center;text-align:center;min-height:96vh;padding:60px 24px 90px;position:relative;z-index:2;}
-  #videoWrap{position:relative;width:min(94vw,1500px);max-height:80vh;aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.55);transition:transform 1s cubic-bezier(.16,.84,.44,1),opacity .8s,filter 1s;}
+  #videoWrap{position:relative;width:min(70vw,960px);max-height:60vh;aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.55);transition:transform 1s cubic-bezier(.16,.84,.44,1),opacity .8s,filter 1s;}
   #soundBtn{position:fixed;left:22px;bottom:22px;z-index:62;display:flex;align-items:center;gap:7px;background:var(--navy);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:11px 18px;font-size:14px;font-weight:600;font-family:var(--font);cursor:pointer;box-shadow:0 10px 28px rgba(5,0,87,.35);animation:sbpulse 2.2s ease-in-out infinite;transition:opacity .3s,background .2s;}
   #soundBtn:hover{background:var(--navy-2);}
   #soundBtn.hidden{opacity:0;pointer-events:none;}
   @keyframes sbpulse{0%,100%{box-shadow:0 10px 28px rgba(5,0,87,.35);}50%{box-shadow:0 10px 34px rgba(109,190,72,.55);}}
   #introVideo{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
-  .hero.done #videoWrap{transform:scale(.70) translateY(-4%);filter:brightness(.85);}
+  .hero.done #videoWrap{transform:scale(.80) translateY(-6%);filter:brightness(.85);}
   .hero-copy{position:absolute;left:0;right:0;bottom:9%;opacity:0;transform:translateY(16px);transition:opacity .9s ease .2s,transform .9s ease .2s;pointer-events:none;z-index:3;padding:0 24px;}
   .hero.done .hero-copy{opacity:1;transform:none;pointer-events:auto;}
   .hero-copy h1{color:#fff;font-size:clamp(28px,4.6vw,52px);margin-bottom:14px;}
@@ -105,7 +105,7 @@
   .cta h2{color:#fff;} .cta p{color:#c7cde0;max-width:620px;margin:0 auto 26px;}
 
   footer{background:var(--bg-dark);color:#aab2cd;padding:56px 0 40px;font-size:14px;}
-  footer img{height:28px;margin-bottom:14px;}
+  footer img{height:52px;margin-bottom:14px;}
   .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;}
   @media(max-width:760px){.foot-grid{grid-template-columns:1fr;}}
   footer a{color:#aab2cd;} footer a:hover{color:var(--green-l);}
@@ -143,7 +143,7 @@
 
 <!-- NAV -->
 <header class="nav"><div class="wrap nav-in">
-  <img src="GreenAnalytics-Logo.png" alt="Green Analytics Group" />
+  <img src="GreenAnalytics-Group-Logo.png" alt="Green Analytics Group" />
   <nav class="nav-links">
     <a href="#group">Group</a>
     <a href="#companies">Companies</a>
@@ -317,7 +317,7 @@
 <footer id="contact">
   <div class="wrap foot-grid">
     <div>
-      <img src="GreenAnalytics-Logo.png" alt="Green Analytics Group" />
+      <img src="GreenAnalytics-Group-Logo.png" alt="Green Analytics Group" />
       <p style="max-width:360px">Digital infrastructure for housing and natural assets — open, interoperable, and in service of the public good.</p>
       <p class="muted">#413, 3428 99 St NW, Edmonton, AB · Victoria · Vancouver · Calgary · Toronto</p>
     </div>
@@ -339,7 +339,7 @@
 <!-- CHAT -->
 <button class="btn" id="chatToggle" onclick="openChat()">💬 Ask our AI</button>
 <section id="chatPanel" aria-label="Green Analytics assistant">
-  <div class="cp-head"><img src="GreenAnalytics-Logo.png" alt=""><span class="t">Green Analytics Assistant</span><span class="x" onclick="closeChat()">×</span></div>
+  <div class="cp-head"><img src="GreenAnalytics-Group-Logo.png" alt=""><span class="t">Green Analytics Assistant</span><span class="x" onclick="closeChat()">×</span></div>
   <div class="cp-msgs" id="cpMsgs" aria-live="polite"></div>
   <div class="cp-sug" id="cpSug"></div>
   <form class="cp-form" id="cpForm" autocomplete="off">
