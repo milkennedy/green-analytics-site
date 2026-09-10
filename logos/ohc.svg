@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" fill="none" role="img" aria-label="Open Housing Canada">
+  <g transform="translate(4,8) scale(0.64)">
+    <rect x="16" y="16" width="20" height="20" rx="3" fill="#15171C"/>
+    <rect x="40" y="16" width="20" height="20" rx="3" fill="#C8742B"/>
+    <rect x="64" y="16" width="20" height="20" rx="3" fill="#15171C"/>
+    <rect x="16" y="40" width="20" height="20" rx="3" fill="#15171C"/>
+    <rect x="64" y="40" width="20" height="20" rx="3" fill="#1F4DFF"/>
+    <rect x="16" y="64" width="20" height="20" rx="3" fill="#1F4DFF"/>
+    <rect x="40" y="64" width="20" height="20" rx="3" fill="#15171C"/>
+    <rect x="64" y="64" width="20" height="20" rx="3" fill="#15171C"/>
+  </g>
+  <text x="78" y="36" font-family="'Space Grotesk','Inter',sans-serif" font-size="26" font-weight="600" letter-spacing="-0.8" fill="#15171C">Open Housing</text>
+  <text x="78" y="64" font-family="'Space Grotesk','Inter',sans-serif" font-size="26" font-weight="400" letter-spacing="-0.5" fill="#1F4DFF">Canada</text>
+</svg>
